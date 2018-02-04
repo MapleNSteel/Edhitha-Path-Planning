@@ -1,0 +1,39 @@
+/*
+ * GPSCoordinate.h
+ *
+ *  Created on: 8 Apr 2016
+ *      Author: arjun
+ */
+#ifndef UTILITY_CLASSES_GPSCOORDINATE_H_
+#define UTILITY_CLASSES_GPSCOORDINATE_H_
+
+#include <iostream>
+
+#include "General/Vec3.hpp"
+
+#include <GeographicLib/Geocentric.hpp>
+#include <GeographicLib/LocalCartesian.hpp>
+#include <GeographicLib/Geodesic.hpp>
+
+using namespace GeographicLib;
+using namespace std;
+
+class GPSCoordinate: public Vec3<long double> {
+private:
+	Vec3<long double> cartesianLocation;
+
+public:
+
+	static Geocentric earth;
+	static LocalCartesian localCartesian;
+	static Vec3<long double> homeReference;
+
+	GPSCoordinate();
+	GPSCoordinate(long double latitude, long double longitude, long double altitude);
+	GPSCoordinate(Vec3<long double> cartesianCoordinate);
+	virtual ~GPSCoordinate();
+
+	Vec3<long double> getCartesian();
+};
+
+#endif /* UTILITY_CLASSES_GPSCOORDINATE_H_ */
